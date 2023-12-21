@@ -59,7 +59,7 @@ export function DisplayResults({ results }) {
   return (
     <div>
       <h2>Computer Vision Analysis</h2>
-      {results.url && <img src={results.url} alt="Analyzed image" />}
+      {results.url && <img src={results.url} alt="Analysis result" />}
       {results.description && (
         <p>
           <strong>Description:</strong> {results.description.captions[0].text} 
