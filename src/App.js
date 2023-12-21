@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
-import './index.css';
+import './index.css'; // Make sure this is the correct path to your CSS file
+import analyzeImage from './azure-image-analysis';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [analysisResults, setAnalysisResults] = useState(null);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleAnalyzeClick = () => {
-    // Placeholder for analyze image logic
-    console.log('Analyze:', inputValue);
+  const handleAnalyzeClick = async () => {
+    try {
+      setLoading(true);
+      const results = await analyzeImage(inputValue);
+      setAnalysisResults(results);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false); // This ensures we set loading to false even if there's an error
+    }
   };
 
   const handleGenerateClick = () => {
@@ -30,11 +40,33 @@ function App() {
           value={inputValue}
           onChange={handleInputChange}
         />
-        <button onClick={handleAnalyzeClick}>Analyze</button>
+        <button onClick={handleAnalyzeClick} disabled={loading}>Analyze</button>
         <button onClick={handleGenerateClick}>Generate</button>
       </div>
+      {loading ? <p>Loading...</p> : <DisplayResults results={analysisResults} />}
     </div>
   );
 }
 
-export default App;
+export default App; // This marks the end of the App component
+
+export function DisplayResults({ results }) {
+  if (!results) {
+    return null;
+  }
+  
+  // Assuming 'results' has 'url' and 'description' fields as per Azure API response
+  return (
+    <div>
+      <h2>Computer Vision Analysis</h2>
+      {results.url && <img src={results.url} alt="Analyzed image" />}
+      {results.description && (
+        <p>
+          <strong>Description:</strong> {results.description.captions[0].text} 
+          (Confidence: {results.description.captions[0].confidence.toFixed(2)})
+        </p>
+      )}
+      {/* Display additional results if needed */}
+    </div>
+  );
+}
