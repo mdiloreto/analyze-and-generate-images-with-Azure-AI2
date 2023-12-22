@@ -44,7 +44,7 @@ function App() {
 
 export default App; // This marks the end of the App component
 
-export function DisplayResults({ results, setInputValue }) {
+export function DisplayResults({ results, inputValue }) {
   const [showJson, setShowJson] = useState(false);
 
   const toggleJsonDisplay = () => {
@@ -58,7 +58,7 @@ export function DisplayResults({ results, setInputValue }) {
   return (
     <div>
       <h2>Computer Vision Analysis Results</h2>
-      <img src={setInputValue} alt="<Error Displaying capture from url...>"/>
+      <img src={inputValue} alt="<Error Displaying capture from url...>"/>
       {results.description?.captions && (
         <div>
           <h3>Description:</h3>
