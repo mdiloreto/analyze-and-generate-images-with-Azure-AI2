@@ -58,24 +58,38 @@ export function DisplayResults({ results, inputValue }) {
   return (
     <div>
       <h2>Computer Vision Analysis Results</h2>
-      <img src={inputValue} alt="<Error Displaying capture from url...>"/>
-      {results.description?.captions && (
+      <img src={inputValue} alt="Analyzed content" style={{ maxWidth: '100%' }} />
+      {results.captionResult && (
         <div>
           <h3>Description:</h3>
-          <p>{results.description.captions[0]?.text}</p>
+          <p>{results.captionResult.text}</p>
         </div>
       )}
 
-      {results.description?.tags && (
+      {results.tagsResult && (
         <div>
           <h3>Tags:</h3>
           <ul>
-            {results.description.tags.map((tag, index) => (
-              <li key={index}>{tag}</li>
+            {results.tagsResult.values.map((tag, index) => (
+              <li key={index}>{tag.name}</li>
             ))}
           </ul>
         </div>
       )}
+
+      {results.readResult && (
+        <div>
+          <h3>Read Text:</h3>
+          <ul>
+            {results.readResult.blocks.map((block, blockIndex) => 
+              block.lines.map((line, lineIndex) => (
+                <li key={`${blockIndex}-${lineIndex}`}>{line.text}</li>
+              ))
+            )}
+          </ul>
+        </div>
+      )}
+
 
       <button onClick={toggleJsonDisplay}>
         {showJson ? 'Hide full JSON' : 'Show full JSON'}
@@ -90,26 +104,3 @@ export function DisplayResults({ results, inputValue }) {
     </div>
   );
 }
-
-
-
-// export function DisplayResults({ results }) {
-//   if (!results) {
-//     return null;
-//   }
-  
-//   // Assuming 'results' has 'url' and 'description' fields as per Azure API response
-//   return (
-//     <div>
-//       <h2>Computer Vision Analysis</h2>
-//       {inputValue && <img src={inputValue} alt="Analyzed result" />}
-//       {results && (
-//         <p>
-//           <strong>Description:</strong> {results.description.captions[0].text} 
-//           (Confidence: {results.description.captions[0].confidence.toFixed(2)})
-//         </p>
-//       )}
-//       {/* Display additional results if needed */}
-//     </div>
-//   );
-// }
