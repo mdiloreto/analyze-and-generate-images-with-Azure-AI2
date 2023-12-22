@@ -5,7 +5,7 @@ const endpoint = process.env.REACT_APP_AZURE_ENDPOINT;
 async function analyzeImage(imageUrl) {
   // API version and query parameters for the features you want to analyze
   const apiVersion = '2023-10-01';
-  const features = 'denseCaptions';
+  const features = 'tags,read,caption';
 
   const response = await fetch(`${endpoint}computervision/imageanalysis:analyze?api-version=${apiVersion}&features=${features}`, {
     method: 'POST',
