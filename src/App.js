@@ -51,18 +51,22 @@ export function DisplayResults({ results }) {
     setShowJson(!showJson);
   };
 
+  if (!results) {
+    return null;
+  }
+
   return (
     <div>
       <h2>Computer Vision Analysis Results</h2>
 
-      {results.description && (
+      {results.description?.captions && (
         <div>
           <h3>Description:</h3>
-          <p>{results.description.captions[0].text}</p>
+          <p>{results.description.captions[0]?.text}</p>
         </div>
       )}
 
-      {results.description && results.description.tags && (
+      {results.description?.tags && (
         <div>
           <h3>Tags:</h3>
           <ul>
