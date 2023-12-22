@@ -78,12 +78,12 @@ export function DisplayResults({ results }) {
       )}
 
       <button onClick={toggleJsonDisplay}>
-        {showJson ? 'Hide JSON' : 'Show JSON'}
+        {showJson ? 'Hide full JSON' : 'Show full JSON'}
       </button>
 
       {showJson && (
         <div>
-          <h3>Full JSON result:</h3>
+          <h3>Full JSON:</h3>
           <pre>{JSON.stringify(results, null, 2)}</pre>
         </div>
       )}
