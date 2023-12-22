@@ -36,7 +36,6 @@ function App() {
           onChange={handleInputChange}
         />
         <button onClick={handleAnalyzeClick} disabled={loading}>Analyze</button>
-        <button onClick={handleGenerateClick}>Generate</button>
       </div>
       {loading ? <p>Loading...</p> : <DisplayResults results={analysisResults} />}
     </div>
