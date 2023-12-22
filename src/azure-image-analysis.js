@@ -3,9 +3,13 @@ const subscriptionKey = process.env.REACT_APP_AZURE_SUBSCRIPTION_KEY;
 const endpoint = process.env.REACT_APP_AZURE_ENDPOINT;
 
 async function analyzeImage(imageUrl) {
-  const response = await fetch(`${endpoint}/vision/v3.2/analyze?visualFeatures=Categories,Description,Tags`, {
+  // Update the URL to the v4.0 API
+  const response = await fetch(`${endpoint}/vision/v4.0/analyze?visualFeatures=Categories,Description,Tags`, {
     method: 'POST',
-    body: JSON.stringify({ url: imageUrl }),
+    body: JSON.stringify({
+      url: imageUrl,
+      // Include new options for v4.0 here if needed
+    }),
     headers: {
       'Ocp-Apim-Subscription-Key': subscriptionKey,
       'Content-Type': 'application/json'
@@ -13,9 +17,11 @@ async function analyzeImage(imageUrl) {
   });
 
   if (!response.ok) {
-    throw new Error('Image analysis failed:', response.statusText);
+    // The API call was unsuccessful
+    throw new Error(`Image analysis failed: ${response.statusText}`);
   }
 
+  // The API call was successful
   return response.json();
 }
 
