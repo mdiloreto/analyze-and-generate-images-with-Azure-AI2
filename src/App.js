@@ -44,7 +44,7 @@ function App() {
 
 export default App; // This marks the end of the App component
 
-export function DisplayResults({ results }) {
+export function DisplayResults({ results, inputValue }) {
   const [showJson, setShowJson] = useState(false);
 
   const toggleJsonDisplay = () => {
