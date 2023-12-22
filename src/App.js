@@ -23,16 +23,11 @@ function App() {
     }
   };
 
-  const handleGenerateClick = () => {
-    // Placeholder for generate image logic
-    console.log('Generate:', inputValue);
-  };
-
   return (
     <div className="app">
       <h1>Computer Vision</h1>
       <div className="input-section">
-        <label htmlFor="image-input">Insert URL or type prompt:</label>
+        <label htmlFor="image-input">Insert URL </label>
         <input
           id="image-input"
           type="text"
@@ -59,7 +54,7 @@ export function DisplayResults({ results }) {
   return (
     <div>
       <h2>Computer Vision Analysis</h2>
-      {results.url && <img src={results.url} alt="Analysis result" />}
+      {results.url && <img src={results.url} alt="Analyzed result" />}
       {results.description && (
         <p>
           <strong>Description:</strong> {results.description.captions[0].text} 
