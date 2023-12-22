@@ -27,7 +27,7 @@ function App() {
     <div className="app">
       <h1>Computer Vision</h1>
       <div className="input-section">
-        <label htmlFor="image-input">Insert URL </label>
+        <label htmlFor="image-input">Insert URL</label>
         <input
           id="image-input"
           type="text"
@@ -37,7 +37,7 @@ function App() {
         />
         <button onClick={handleAnalyzeClick} disabled={loading}>Analyze</button>
       </div>
-      {loading ? <p>Loading...</p> : <DisplayResults results={analysisResults} />}
+      {loading ? <p>Loading...</p> : <DisplayResults results={analysisResults} inputValue={inputValue} />}
     </div>
   );
 }
@@ -58,7 +58,7 @@ export function DisplayResults({ results, inputValue }) {
   return (
     <div>
       <h2>Computer Vision Analysis Results</h2>
-      <img src={inputValue} alt="<Error Displaying capture from url...>"/>
+      <img src={inputValue} alt="Error Displaying capture from url..."/>
       {results.description?.captions && (
         <div>
           <h3>Description:</h3>
