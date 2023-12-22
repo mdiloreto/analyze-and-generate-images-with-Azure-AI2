@@ -58,7 +58,7 @@ export function DisplayResults({ results, setInputValue }) {
   return (
     <div>
       <h2>Computer Vision Analysis Results</h2>
-      <img src={setInputValue} alt="<Error Displaying Image...>"/>
+      <img src={setInputValue} alt="<Error Displaying capture from url...>"/>
       {results.description?.captions && (
         <div>
           <h3>Description:</h3>
