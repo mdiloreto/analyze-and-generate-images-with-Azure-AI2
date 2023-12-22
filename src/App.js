@@ -44,8 +44,6 @@ function App() {
 
 export default App; // This marks the end of the App component
 
-import React, { useState } from 'react';
-
 export function DisplayResults({ results }) {
   const [showJson, setShowJson] = useState(false);
 
