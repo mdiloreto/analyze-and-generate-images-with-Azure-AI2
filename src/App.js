@@ -57,6 +57,9 @@ export function DisplayResults({ results }) {
 
   return (
     <div>
+
+      {inputValue && <img src={inputValue} alt="Analyzed result" />}
+
       <h2>Computer Vision Analysis Results</h2>
 
       {results.description?.captions && (
