@@ -44,16 +44,52 @@ function App() {
 
 export default App; // This marks the end of the App component
 
+import React, { useState } from 'react';
 
 export function DisplayResults({ results }) {
-  // Display the entire JSON response in a preformatted text block
+  const [showJson, setShowJson] = useState(false);
+
+  const toggleJsonDisplay = () => {
+    setShowJson(!showJson);
+  };
+
   return (
     <div>
       <h2>Computer Vision Analysis Results</h2>
-      <pre>{JSON.stringify(results, null, 2)}</pre>
+
+      {results.description && (
+        <div>
+          <h3>Description:</h3>
+          <p>{results.description.captions[0].text}</p>
+        </div>
+      )}
+
+      {results.description && results.description.tags && (
+        <div>
+          <h3>Tags:</h3>
+          <ul>
+            {results.description.tags.map((tag, index) => (
+              <li key={index}>{tag}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <button onClick={toggleJsonDisplay}>
+        {showJson ? 'Hide JSON' : 'Show JSON'}
+      </button>
+
+      {showJson && (
+        <div>
+          <h3>Full JSON result:</h3>
+          <pre>{JSON.stringify(results, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }
+
+
 
 // export function DisplayResults({ results }) {
 //   if (!results) {
