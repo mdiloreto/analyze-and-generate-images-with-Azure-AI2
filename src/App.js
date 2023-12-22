@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Computer Vision</h1>
+      <h1>MultiClouds.tech - Computer Vision React App</h1>
       <div className="input-section">
         <label htmlFor="image-input">Insert URL </label>
         <input
