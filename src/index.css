@@ -39,3 +39,9 @@
     font-size: 1.2em;
   }
   
+  ul {
+    list-style-position: inside; /* Moves the bullets inside the content flow */
+    padding-left: 0;            /* Removes the default padding */
+    text-align: left;            /* Aligns the text to the left */
+  }
+  

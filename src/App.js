@@ -69,7 +69,7 @@ export function DisplayResults({ results, inputValue }) {
       {results.tagsResult && (
         <div>
           <h3>Tags:</h3>
-          <ul>
+          <ul className="center-aligned-list">
             {results.tagsResult.values.map((tag, index) => (
               <li key={index}>{tag.name}</li>
             ))}
@@ -80,7 +80,7 @@ export function DisplayResults({ results, inputValue }) {
       {results.readResult && (
         <div>
           <h3>Read Text:</h3>
-          <ul>
+          <ul className="center-aligned-list">
             {results.readResult.blocks.map((block, blockIndex) => 
               block.lines.map((line, lineIndex) => (
                 <li key={`${blockIndex}-${lineIndex}`}>{line.text}</li>
