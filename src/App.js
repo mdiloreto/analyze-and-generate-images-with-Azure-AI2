@@ -37,7 +37,7 @@ function App() {
         />
         <button onClick={handleAnalyzeClick} disabled={loading}>Analyze</button>
       </div>
-      {loading ? <p>Loading...</p> : <DisplayResults results={analysisResults} />}
+      {loading ? <p>Loading...</p> : <DisplayResults results={analysisResults} inputValue={inputValue} />}
     </div>
   );
 }

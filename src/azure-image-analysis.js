@@ -3,7 +3,11 @@ const subscriptionKey = process.env.REACT_APP_AZURE_SUBSCRIPTION_KEY;
 const endpoint = process.env.REACT_APP_AZURE_ENDPOINT;
 
 async function analyzeImage(imageUrl) {
-  const response = await fetch(`${endpoint}/vision/v3.2/analyze?visualFeatures=Categories,Description,Tags`, {
+  // API version and query parameters for the features you want to analyze
+  const apiVersion = '2023-10-01';
+  const features = 'description,tags,objects,faces,brands,imageType';
+
+  const response = await fetch(`${endpoint}/computervision/imageanalysis:analyze?api-version=${apiVersion}&features=${features}`, {
     method: 'POST',
     body: JSON.stringify({ url: imageUrl }),
     headers: {
