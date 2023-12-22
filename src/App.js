@@ -31,7 +31,7 @@ function App() {
         <input
           id="image-input"
           type="text"
-          placeholder="Enter URL to analyze or textual prompt to generate an image"
+          placeholder="Enter Image URL to analyze"
           value={inputValue}
           onChange={handleInputChange}
         />
@@ -44,23 +44,34 @@ function App() {
 
 export default App; // This marks the end of the App component
 
+
 export function DisplayResults({ results }) {
-  if (!results) {
-    return null;
-  }
-  
-  // Assuming 'results' has 'url' and 'description' fields as per Azure API response
+  // Display the entire JSON response in a preformatted text block
   return (
     <div>
-      <h2>Computer Vision Analysis</h2>
-      {results.url && <img src={results.url} alt="Analyzed result" />}
-      {results.description && (
-        <p>
-          <strong>Description:</strong> {results.description.captions[0].text} 
-          (Confidence: {results.description.captions[0].confidence.toFixed(2)})
-        </p>
-      )}
-      {/* Display additional results if needed */}
+      <h2>Computer Vision Analysis Results</h2>
+      <pre>{JSON.stringify(results, null, 2)}</pre>
     </div>
   );
 }
+
+// export function DisplayResults({ results }) {
+//   if (!results) {
+//     return null;
+//   }
+  
+//   // Assuming 'results' has 'url' and 'description' fields as per Azure API response
+//   return (
+//     <div>
+//       <h2>Computer Vision Analysis</h2>
+//       {inputValue && <img src={inputValue} alt="Analyzed result" />}
+//       {results && (
+//         <p>
+//           <strong>Description:</strong> {results.description.captions[0].text} 
+//           (Confidence: {results.description.captions[0].confidence.toFixed(2)})
+//         </p>
+//       )}
+//       {/* Display additional results if needed */}
+//     </div>
+//   );
+// }

@@ -3,7 +3,7 @@ const subscriptionKey = process.env.REACT_APP_AZURE_SUBSCRIPTION_KEY;
 const endpoint = process.env.REACT_APP_AZURE_ENDPOINT;
 
 async function analyzeImage(imageUrl) {
-  const response = await fetch(`${endpoint}/vision/v3.2/analyze?visualFeatures=Categories,Description,Tags`, {
+  const response = await fetch(`${endpoint}/vision/v3.2/analyze`, {
     method: 'POST',
     body: JSON.stringify({ url: imageUrl }),
     headers: {
